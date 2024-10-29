@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A websocket implementation",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "WebSocket.io"
+  },
+  "keywords": [
+    "Nooruddin"
+  ],
+  "author": "Nooruddin",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "^4.8.1"
+  }
+}
