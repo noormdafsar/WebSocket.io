@@ -6,6 +6,7 @@ import Input from './components/Input';
 function App() {
 
 const [score, setScore] = useState({});
+const [displayScore, setDisplayScore] = useState({});
 
 const socket = io('http://localhost:4000');
 
@@ -28,7 +29,8 @@ const sendScore = () => {
   
   socket.emit('score', score);
   socket.on('playerScore', (playerScore) => {
-    console.log(playerScore);
+   // console.log('playerScore', playerScore);
+    setDisplayScore(playerScore);
   });
 }
 
@@ -42,6 +44,25 @@ useEffect(() => {
     <Input name = 'name' placeholder='Enter your name' onChange={inputHandler} />
     <Input name = 'score' placeholder='Enter your score' onChange={inputHandler} />
     <button className = 'send-score' onClick={sendScore}>Publish score</button>
+
+    {Object.keys(displayScore).length > 0 ?
+  <table>
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+      {displayScore.map((score, index) => {
+        return (
+          <tr key={index}>
+            <td>{score?.name}</td>
+            <td>{score?.score}</td>
+          </tr>
+        )
+      })}
+      </tbody>
+    </table> : <></>
+    }
    </>
   )
 }

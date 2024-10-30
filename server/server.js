@@ -13,7 +13,10 @@ let playerScore = [];
 io.on('connection', (socket) => {
     socket.on('score', (score) => {
       playerScore.push(score);
-      io.emit('playerScore', playerScore);
+      //socket.emit('playerScore', playerScore);
+      setInterval(() => {
+        socket.emit('playerScore', playerScore);
+      }, 5000);
     });
   });
   
